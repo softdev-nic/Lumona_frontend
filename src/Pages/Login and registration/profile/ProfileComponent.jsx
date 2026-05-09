@@ -11,18 +11,21 @@ function ProfileComponent(props) {
     id: props.id,
   })
 const [active,setActive] = useState(true)
-  const HandleChange = async (e) => {
-    const { name, value } = e.target;
-    const updatedData = { ...formdata, [name]: value };
-    setFormdata(updatedData);
 
+  const HandleChange = (e) => {
+    const { name, value } = e.target;
+    setFormdata({ ...formdata, [name]: value });
+  }
+
+  const HandleSave = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.put('http://localhost:3000/api/profile', updatedData, {
+      const response = await axios.put('http://localhost:3000/api/profile', { username: formdata.name, email:formdata.email,}, {
         headers: {
           'x-auth-token': token
         }
       });
+      setActive(true);
       console.log("Profile updated:", response.data);
     } catch (err) {
       console.error("Error updating profile:", err);
@@ -52,7 +55,7 @@ const [active,setActive] = useState(true)
 
           <div className="flex justify-end mb-2">
             <button className='border-none outline-none bg-transparent text-gray-400 hover:text-indigo-600 transition-colors p-3 hover:bg-gray-100 rounded-md' onClick={(e)=>{setActive(false)}}>Edit</button>
-            <button className='border-none outline-none bg-transparent text-gray-400 hover:text-indigo-600 transition-colors p-3 hover:bg-gray-100 rounded-md ' onCanPlay={HandleChange} >Save</button>
+            <button className='border-none outline-none bg-transparent text-gray-400 hover:text-indigo-600 transition-colors p-3 hover:bg-gray-100 rounded-md ' onClick={HandleSave} >Save</button>
 
           </div>
 
@@ -72,7 +75,7 @@ const [active,setActive] = useState(true)
               <label className="text-xs font-semibold text-gray-400 uppercase ml-1 mb-1">User ID</label>
               <input 
                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 focus:outline-none" 
-                value={formdata.id}
+                value={formdata.id} readOnly
               />
             </div>
             <div className="flex flex-col">
