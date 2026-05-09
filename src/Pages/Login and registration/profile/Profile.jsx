@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import ProfileComponent from './ProfileComponent';
 
 function Profile() {
     const [user, setUser] = useState(null);
@@ -13,6 +14,7 @@ function Profile() {
                         'x-auth-token': token
                     }
                 })
+                console.log(response.data)
                 setUser(response.data)
             } catch (err) {
                 console.error("Error fetching profile:", err)
@@ -22,13 +24,16 @@ function Profile() {
     }, [])
 
     return (
-        <div>
-            <h1>Profile</h1>
-            {user ? (
-                <pre>{JSON.stringify(user)}</pre>
-            ) : (
-                <p>Loading...</p>
-            )}
+        <div className='text-center'>
+            <h1 className='text-3xl text-bold'>profile</h1>
+          
+    {
+    
+          user?(
+            <ProfileComponent id={user._id} name={user.username} email={user.email} date={user.date} streak = {user.streak} longeststreak = {user.longestStreak}/>
+):(
+    <p>Loading...</p>   )
+    }
         </div>)
 }
 
