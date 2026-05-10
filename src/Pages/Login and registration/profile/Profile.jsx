@@ -30,7 +30,7 @@ function Profile() {
     {
     
           user?(
-            <ProfileComponent id={user._id} name={user.username} email={user.email} date={user.date} streak = {user.streak} longeststreak = {user.longestStreak}/>
+            <ProfileComponent id={user._id} name={user.username} email={user.email} date={user.date} streak = {user.streak} longeststreak = {user.longestStreak} score={user.score}/>
 ):(
     <p>Loading...</p>   )
     }

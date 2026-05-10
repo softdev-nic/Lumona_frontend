@@ -9,6 +9,7 @@ function ProfileComponent(props) {
     streak: props.streak,
     longeststreak: props.longeststreak,
     id: props.id,
+    score: props.score,
   })
 const [active,setActive] = useState(true)
 
@@ -59,7 +60,7 @@ const [active,setActive] = useState(true)
 
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-3 gap-4 mb-8">
             <div className="bg-orange-50 p-4 rounded-xl text-center border border-orange-100">
               <p className="text-sm text-orange-600 font-medium uppercase tracking-wider">Current Streak</p>
               <p className="text-2xl font-bold text-orange-700">{formdata.streak || 0} 🔥</p>
@@ -67,6 +68,10 @@ const [active,setActive] = useState(true)
             <div className="bg-blue-50 p-4 rounded-xl text-center border border-blue-100">
               <p className="text-sm text-blue-600 font-medium uppercase tracking-wider">Best Streak</p>
               <p className="text-2xl font-bold text-blue-700">{formdata.longeststreak || 0} 🏆</p>
+            </div>
+            <div className="bg-green-50 p-4 rounded-xl text-center border border-green-100">
+              <p className="text-sm text-green-600 font-medium uppercase tracking-wider">Total Score</p>
+              <p className="text-2xl font-bold text-green-700">{formdata.score || 0} ✨</p>
             </div>
           </div>
 
