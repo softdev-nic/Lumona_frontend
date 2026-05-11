@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import API from '../../services/api';
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
@@ -14,7 +14,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/login', {
+      const response = await API.post('/api/login', {
         email: formData.email,
         password: formData.password,
       });

@@ -1,5 +1,6 @@
  import React, { useState } from 'react'
 import axios from 'axios'
+import API from '../../../services/api'
 
 function ProfileComponent(props) {
   const [formdata, setFormdata] = useState({
@@ -21,11 +22,7 @@ const [active,setActive] = useState(true)
   const HandleSave = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.put('http://localhost:3000/api/profile', { username: formdata.name, email:formdata.email,}, {
-        headers: {
-          'x-auth-token': token
-        }
-      });
+      const response =   API.put('/api/profile', { username: formdata.name, email:formdata.email  });
       setActive(true);
       console.log("Profile updated:", response.data);
     } catch (err) {

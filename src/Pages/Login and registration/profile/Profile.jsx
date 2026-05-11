@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ProfileComponent from './ProfileComponent';
-
+import API from '../../../services/api'
 function Profile() {
     const [user, setUser] = useState(null);
 
@@ -9,11 +9,8 @@ function Profile() {
         const fetchProfile = async () => {
             const token = localStorage.getItem('token')
             try {
-                const response = await axios.get('http://localhost:3000/api/profile', {
-                    headers: {
-                        'x-auth-token': token
-                    }
-                })
+          const response = await API.get('/api/profile')
+    
                 console.log(response.data)
                 setUser(response.data)
             } catch (err) {

@@ -7,9 +7,10 @@
  import Profile from "./Pages/Login and registration/profile/Profile"
  import TaskManager from "./Pages/Task Manager/TaskManager"
  import Tasklist from "./Pages/Task Manager/Tasklist"
+ 
 
 function App() {
-
+  
   return (
     <>
       <Navbar />
@@ -22,6 +23,7 @@ function App() {
       <Route path="/tasklist" element={<Tasklist />}/> 
      </Routes>
     </>
+
   )
 }
 
