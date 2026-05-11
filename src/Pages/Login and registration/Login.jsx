@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import API from '../../services/api';
-function Login() {
+import { useNavigate } from 'react-router-dom';
+
+function Login(props) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -18,8 +20,9 @@ function Login() {
         email: formData.email,
         password: formData.password,
       });
-      console.log('Login successful:', response.data);
       localStorage.setItem('token', response.data.token);
+      navigate('/tasklist')
+
     } catch (error) {
       console.error('Login error:', error);
     }
@@ -28,7 +31,10 @@ function Login() {
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-80px)] bg-gray-100 p-4">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-gray-800">Login</h2>
+          <div className='flex w-full justify-center item-center'>
+
+          <img src={props.logo} alt="Lumona Logo" className='w-30 h-30 object-contain mix-blend-multiply'/>
+        </div>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block mb-1 text-sm font-medium text-gray-700">Email Address</label>

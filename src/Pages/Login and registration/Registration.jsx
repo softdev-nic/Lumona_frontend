@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-function Registration() {
+import API from '../../services/api';
+function Registration(props) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,8 +21,7 @@ function Registration() {
     Formdata.append('email', formData.email);
     Formdata.append('password', formData.password);
     try {
-          const response = await axios.post(
-      'http://localhost:3000/api/register',
+          const response = await API.post('/api/register',
       {
         username: formData.name,
         email: formData.email,
@@ -46,7 +46,10 @@ function Registration() {
   return (
     <div className="flex items-center justify-center min-h-[calc(100-80px)] bg-gray-100 p-4">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-gray-800">Create Account</h2>
+        <div className='flex w-full justify-center item-center'>
+
+          <img src={props.logo} alt="Lumona Logo" className='w-30 h-30 object-contain mix-blend-multiply'/>
+        </div>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block mb-1 text-sm font-medium text-gray-700">Full Name</label>

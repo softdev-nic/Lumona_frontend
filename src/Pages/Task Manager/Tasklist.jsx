@@ -4,19 +4,18 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import { FaCheck } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
+import API from '../../services/api';
 
-function Tasklist() {
+function Tasklist(props) {
     const [tasks,setTasks] =  useState([])
     const [score,setScore] = useState(0)
+    const [completingId, setCompletingId] = useState(null);
 
     const getScore = async () => {
         try {
           const token = localStorage.getItem('token');
-          const response = await axios.get('http://localhost:3000/api/score', {
-            headers: {
-              'x-auth-token': token
-            }
-          });
+          const response = await API.get('/api/score')
+          ;
           setScore(response.data.score);
         } catch (err) {
           console.log("Error fetching score:", err);
@@ -39,17 +38,18 @@ const deleteTask = (id) => {
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 }
 const taskCompleted = async (id) => {
+    setCompletingId(id);
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:3000/api/score', {}, {
-        headers: {
-          'x-auth-token': token
-        }
-      })
+      await API.put('/api/score') 
       console.log("Score updated successfully")
-      deleteTask(id);
-      getScore();
+      setTimeout(() => {
+          deleteTask(id);
+          getScore();
+          setCompletingId(null);
+      }, 1000);
       console.log(score)
+      
       
     } catch (err) {
       console.log("Error updating score:", err);
@@ -66,22 +66,29 @@ const taskCompleted = async (id) => {
     </Link>
     
     </div>
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Your Tasks</h1>
+        
         <div className="w-full max-w-md space-y-4 flex flex-row flex-wrap justify-center items-center">
             {tasks.length > 0 ? (
                 tasks.map((task) => (
-                    <div key={task.id} className="bg-white p-4 rounded-lg w-half shadow-md flex justify-between items-center border-l-4 border-blue-500">
-                        <div className="text-left" >
-                            <h3 className="font-semibold text-gray-700">{task.taskInput}</h3>
-                            <p className="text-sm text-gray-500">{`${task.time} min `}</p>
+                    <div key={task.id} className="bg-white rounded-lg w-full shadow-md overflow-hidden border-l-4 border-blue-500">
+                        <div className="p-4 flex justify-between items-center">
+                            <div className="text-left w-full" >
+                                <h3 className="font-semibold text-gray-700">{task.taskInput}</h3>
+                                <p className="text-sm text-gray-500">{`${task.time} min `}</p>
+                            </div>
+                            <button className="text-red-500 hover:text-red-700 transition-colors p-2 cursor-pointer" onClick={() => deleteTask(task.id)}>
+                                <AiOutlineDelete size={20} />
+                            </button>
+                            <button className="text-green-500 hover:text-green-700 transition-colors p-2 cursor-pointer" onClick={() => taskCompleted(task.id)}>
+                                <FaCheck size={20} />
+                            </button>
                         </div>
-                        <button className="text-red-500 hover:text-red-700 transition-colors p-2 cursor-pointer" onClick={() => deleteTask(task.id)}>
-                            <AiOutlineDelete size={20} />
-
-                        </button>
-                        <button className="text-green-500 hover:text-green-700 transition-colors p-2 cursor-pointer" onClick={() => taskCompleted(task.id)}>
-                            <FaCheck size={20} />
-                        </button>
+                        {completingId === task.id && (
+                            <div className="w-full bg-gray-200 h-1.5">
+                                <div className="bg-green-500 h-1.5 transition-all duration-1000 ease-linear" 
+                                     style={{ width: '100%' }}></div>
+                            </div>
+                        )}
                     </div>
                 ))
             ) : (
