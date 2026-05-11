@@ -55,6 +55,24 @@ const taskCompleted = async (id) => {
       console.log("Error updating score:", err);
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      tasks.forEach((task) => {
+        const startTime = new Date(task.startTime).getTime();
+        const durationMs = parseInt(task.time) * 60 * 1000;
+        if (now > startTime + durationMs) {
+          deleteTask(task.id);
+          API.put('/api/penaltyscore')
+
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [tasks]);
+
   return (
    
    <div className="w-full min-h-screen bg-gray-100 flex flex-col items-center py-10">
@@ -74,7 +92,13 @@ const taskCompleted = async (id) => {
                         <div className="p-4 flex justify-between items-center">
                             <div className="text-left w-full" >
                                 <h3 className="font-semibold text-gray-700">{task.taskInput}</h3>
-                                <p className="text-sm text-gray-500">{`${task.time} min `}</p>
+                                <div className="flex gap-2 items-center">
+                                    <p className="text-sm text-gray-500">{`${task.time} min `}</p>
+                                    <span className="text-xs font-mono text-red-500">
+                                        Ends: {new Date(new Date(task.startTime).getTime() + parseInt(task.time) * 60000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    </span>
+                                </div>
+                                <p className="text-xs text-gray-400">{new Date(task.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                             </div>
                             <button className="text-red-500 hover:text-red-700 transition-colors p-2 cursor-pointer" onClick={() => deleteTask(task.id)}>
                                 <AiOutlineDelete size={20} />

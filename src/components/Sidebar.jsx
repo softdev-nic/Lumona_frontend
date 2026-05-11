@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaTasks, FaUser, FaPlus, FaChevronLeft, FaChevronRight, FaSignOutAlt } from 'react-icons/fa';
+import { FaTasks, FaUser, FaPlus, FaChevronLeft, FaChevronRight, FaSignOutAlt ,FaList} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 function Sidebar(props) {
@@ -19,7 +19,7 @@ function Sidebar(props) {
 
 
   return (
-    <div className={`fixed left-0 top-20 h-[calc(100vh-80px)] bg-white shadow-xl transition-all duration-300 z-20 flex flex-col ${isOpen ? 'w-64' : 'w-20'}`}>
+    <div className={`fixed left-0 top-20 h-[calc(100vh-80px)] bg-white shadow-xl transition-all duration-300 z-20 flex flex-col ${isOpen ? 'w-64 translate-x-0' : 'w-20 -translate-x-full md:translate-x-0'}`}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="absolute -right-3 top-10 bg-blue-600 text-white p-1 rounded-full shadow-lg hover:bg-blue-700 transition-colors"
@@ -33,6 +33,10 @@ function Sidebar(props) {
         <Link to="/profile" className="flex items-center gap-4 p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all">
           <FaUser size={20} />
           {isOpen && <span className="font-medium">Profile</span>}
+        </Link>
+          <Link to="/tasklist" className="flex items-center gap-4 p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all">
+          <FaList size={20} />
+          {isOpen && <span className="font-medium">Task List</span>}
         </Link>
       </nav>
 

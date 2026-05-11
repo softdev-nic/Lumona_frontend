@@ -32,7 +32,7 @@ const HandleSubmit = (e) => {
     {
         
         const existingTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        const newTask = { ...formdata, id: Date.now() };
+        const newTask = { ...formdata, id: Date.now(), startTime: new Date().toISOString() };
         const updatedTasks = [...existingTasks, newTask];
         localStorage.setItem('tasks', JSON.stringify(updatedTasks));
         setFormdata({ taskInput: '', time: '' });
