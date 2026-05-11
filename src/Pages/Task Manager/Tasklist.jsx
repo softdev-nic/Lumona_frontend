@@ -76,6 +76,7 @@ const taskCompleted = async (id) => {
   return (
    
    <div className="w-full min-h-screen bg-gray-100 flex flex-col items-center py-10">
+    <nav className='flex w-full flex-row  p-3  h-20 bg-transparent top-0 flex-wrap justify-center items-center'><p>Score: {score}</p></nav>
     <div className='flex w-full flex-row absoulute flex-wrap justify-end p-3 items-center h-20 '>
     <Link to='/taskmanager'>
     <button className='hover:border-2'>
