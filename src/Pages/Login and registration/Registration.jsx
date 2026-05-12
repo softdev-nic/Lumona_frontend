@@ -30,7 +30,7 @@ function Registration(props) {
       }
     );
       console.log('Registration successful:', response.data);
-      localStorage.setItem('token', response.data.token);
+      
       setFormData({
         name: '',
         email: '',
