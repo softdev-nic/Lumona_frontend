@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import API from '../../services/api';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login(props) {
   const [formData, setFormData] = useState({
@@ -67,9 +67,10 @@ function Login(props) {
         </form>
         <p className="text-sm text-center text-gray-600">
           Don't have an account?{' '}
-          <a href="/registration" className="text-blue-600 hover:underline">
+          <  Link to="/registration" className="text-blue-600 hover:underline">
             Sign Up
-          </a>
+            </Link>
+          
         </p>
       </div>
     </div>
