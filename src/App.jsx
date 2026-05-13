@@ -10,7 +10,7 @@ import { useState,useEffect } from "react"
  import Logo from "./assets/LumonaLogo1.png"
  import Sidebar from "./components/Sidebar"
  import ResetPassword from "./Pages/ResetPassword"
-
+ import ResetPasswordPage from "./Pages/ResetPasswordPage"
 function App() {
   const [logged,setLogged] = useState(false)
   const location = useLocation();
@@ -37,6 +37,7 @@ function App() {
        <Route path="/taskmanager" element={<TaskManager logo={Logo} />}/> 
       <Route path="/tasklist" element={<Tasklist logo={Logo} />}/> 
       <Route path="/resetpassword" element={<ResetPassword logo={Logo} />}/> 
+      <Route path="/resetpassword/:token" element={<ResetPasswordPage logo={Logo} />}/> 
      </Routes>
     </>
 

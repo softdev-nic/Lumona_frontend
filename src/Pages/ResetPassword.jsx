@@ -1,10 +1,13 @@
 import React from 'react'
 import { useState } from 'react';
 import API from '../services/api';
+import { useNavigate } from 'react-router-dom';
+
 function ResetPassword() {
     const [formData, setFormData] = useState({
     email: '',
   });
+  const navigate = useNavigate();
 const HandleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -16,8 +19,8 @@ const HandleChange = (e) => {
         
 }
   )
+  navigate('/resetpassword/:token');
   console.log('reset Link successful:', response.data);
-  
 } catch (error) {
   console.error('reset Link error:', error);
 }
