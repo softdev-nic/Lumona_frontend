@@ -43,10 +43,10 @@ function ResetPasswordPage() {
                 </div>
                  <div className='flex w-full'>
 
-                <input type="password" placeholder='New Password' name='confirmpassword' value={formData.confirmpassword}/>
+                <input type="password" placeholder='New Password' name='confirmpassword' onChange={Handlechange}  value={formData.confirmpassword}/>
                 </div>
             </form>
-            <button  className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handleSubmit} >Reset Password</button>
+            <button  className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onChange={Handlechange} onClick={handleSubmit} >Reset Password</button>
         </div>
         </div>
     </div>
