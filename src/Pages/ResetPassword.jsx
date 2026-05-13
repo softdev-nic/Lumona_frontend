@@ -19,8 +19,14 @@ const HandleChange = (e) => {
         
 }
   )
-  navigate('/resetpassword/:token');
-  console.log('reset Link successful:', response.data);
+   
+  return(
+    <div className='flex items-center justify-center  min-h-[calc(100vh-80px)] bg-gray-100 p-4'>
+     <p>check your email</p>
+    
+      </div>
+  )
+
 } catch (error) {
   console.error('reset Link error:', error);
 }
