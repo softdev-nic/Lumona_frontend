@@ -6,13 +6,14 @@ import { useParams } from 'react-router-dom';
 function ResetPasswordPage() {
   const { token } = useParams();
   const navigate = useNavigate();
+  console.log(token)
   const [formData, setFormData] = useState({
     newpassword: '',
     confirmpassword: '',
   });
   const Handlechange =(e)=>{
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
+    
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
