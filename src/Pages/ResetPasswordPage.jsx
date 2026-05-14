@@ -23,9 +23,9 @@ function ResetPasswordPage() {
     return;
     }
     try {
-      const response = await API.post(`/api/auth/reset-password}`, {
+      const response = await API.post(`/api/auth/resetpassword/:${token}`, {
         newpassword: formData.newpassword,
-        token:token
+    
       });
       console.log('Password reset successful:', response.data);
       navigate('/login');
