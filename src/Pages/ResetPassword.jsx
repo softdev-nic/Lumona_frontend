@@ -14,7 +14,7 @@ const HandleChange = (e) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await API.post('/api/reset-password', {
+      const response = await API.post('/api/resetpassword', {
         email: formData.email,
         
 }
