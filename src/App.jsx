@@ -9,7 +9,7 @@ import { useState,useEffect } from "react"
  import Tasklist from "./Pages/Task Manager/Tasklist"
  import Logo from "./assets/LumonaLogo1.png"
  import Sidebar from "./components/Sidebar"
- import ResetPassword from "./Pages/ResetPassword"
+ import ResetPassword from './Pages/ResetPassword'
  import ResetPasswordPage from "./Pages/ResetPasswordPage"
 function App() {
   const [logged,setLogged] = useState(false)
