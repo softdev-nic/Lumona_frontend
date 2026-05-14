@@ -36,8 +36,8 @@ function App() {
        <Route path="/profile" element={<Profile logo={Logo} />}/> 
        <Route path="/taskmanager" element={<TaskManager logo={Logo} />}/> 
       <Route path="/tasklist" element={<Tasklist logo={Logo} />}/> 
-      <Route path="/resetpassword" element={<ResetPassword logo={Logo} />}/> 
-      <Route path="/resetpassword/:token" element={<ResetPasswordPage logo={Logo} />}/> 
+      <Route path="/resetpassword" element={<ResetPassword />}/> 
+      <Route path="/resetpassword/:token" element={<ResetPasswordPage/>}/> 
      </Routes>
   
     </>
