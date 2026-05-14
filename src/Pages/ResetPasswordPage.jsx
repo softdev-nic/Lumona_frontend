@@ -5,9 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 function ResetPasswordPage() {
   const { token } = useParams();
-  console.log(token)
   const navigate = useNavigate();
-  console.log(token)
   const [formData, setFormData] = useState({
     newpassword: '',
     confirmpassword: '',
@@ -19,9 +17,8 @@ function ResetPasswordPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(formData.newpassword !== formData.confirmpassword){
-    const Error = new Error("Passwords do not match");
-    throw Error
-    return;
+      alert("Passwords do not match");
+      return;
     }
     try {
       const response = await API.put(`/api/auth/resetpassword/${token}`, {
