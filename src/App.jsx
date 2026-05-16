@@ -33,12 +33,18 @@ function App() {
        
        <Route path="/registration" element={<Registration logo={Logo} />}/> 
        <Route path="/login" element={<Login logo={Logo} />}/>
-       <Route path="/profile" element={<Profile logo={Logo} />}/> 
+       {
+
+       logged&& ( <>
+        <Route path="/profile" element={<Profile logo={Logo} />}/> 
        <Route path="/taskmanager" element={<TaskManager logo={Logo} />}/> 
       <Route path="/tasklist" element={<Tasklist logo={Logo} />}/> 
       <Route path="/resetpassword" element={<ResetPassword />}/> 
       <Route path="/resetpassword/:token" element={<ResetPasswordPage/>}/> 
-     </Routes>
+        </>
+        )
+      }
+      </Routes>
   
     </>
 
