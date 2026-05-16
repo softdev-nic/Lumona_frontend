@@ -13,6 +13,7 @@ import { useState,useEffect } from "react"
  import ResetPasswordPage from "./Pages/ResetPasswordPage"
  import Message from "./components/Message"
  import { useNavigate } from "react-router-dom"
+import PopUp from "./components/Pop Up/PopUP"
 function App() {
   const [logged,setLogged] = useState(false)
   const location = useLocation();
@@ -41,15 +42,17 @@ function App() {
         <Route path="/profile" element={<Profile logo={Logo} />}/> 
        <Route path="/taskmanager" element={<TaskManager logo={Logo} />}/> 
       <Route path="/tasklist" element={<Tasklist logo={Logo} />}/> 
-      <Route path="/resetpassword" element={<ResetPassword />}/> 
-      <Route path="/resetpassword/:token" element={<ResetPasswordPage/>}/> 
+  
         </>
         )
       }
+          <Route path="/resetpassword" element={<ResetPassword />}/> 
+      <Route path="/resetpassword/:token" element={<ResetPasswordPage/>}/> 
+
       </Routes>
     
+      <PopUp message={"hello"} type="error"/>
     </>
-   
   )
 }
 

@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import API from '../../services/api';
 import { Link, useNavigate } from 'react-router-dom';
-
+import PopUp from '../../components/Pop Up/PopUP';
 function Login(props) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+  });
+  const [popup, setPopup] = useState({
+    show: false,
+    message: '',
+    type: 'success'
   });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -21,16 +26,21 @@ function Login(props) {
         password: formData.password,
       });
       localStorage.setItem('token', response.data.token);
-      navigate('/tasklist')
-
+      setPopup({ show: true, message: 'Login Successful!', type: 'success' });
+      setTimeout(() => {
+        navigate('/tasklist');
+      }, 1500);
+        
     } catch (error) {
       console.error('Login error:', error);
+      setPopup({ show: true, message: error.response?.data?.message || 'Login failed', type: 'error' });
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-80px)] bg-gray-100 p-4">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+      {popup.show && <PopUp message={popup.message} type={popup.type} />}
+       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
           <div className='flex w-full justify-center item-center'>
 
           <img src={props.logo} alt="Lumona Logo" className='w-30 h-30 object-contain mix-blend-multiply'/>

@@ -3,9 +3,17 @@ import { useState } from 'react';
 import API from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import PopUp from '../components/Pop Up/PopUP';
 function ResetPasswordPage() {
   const { token } = useParams();
   const navigate = useNavigate();
+  const [popUP, setPopUP] = useState({
+    type:"",
+    message:"",
+    show:false,
+
+})
+  
   const [formData, setFormData] = useState({
     newpassword: '',
     confirmpassword: '',
@@ -26,6 +34,11 @@ function ResetPasswordPage() {
     
       });
       console.log('Password reset successful:', response.data);
+      setPopUP({
+        type:"success",
+        message:"Password reset successful",
+        show:true,
+      })
       navigate('/login');
     } catch (error) {
       console.error('Reset password error:', error);
@@ -49,6 +62,10 @@ function ResetPasswordPage() {
             Update Password
           </button>
         </form>
+        {popUP.show && (
+          <PopUp message={popUP.message} type={popUP.type} />
+        )
+      }
       </div>
     </div>
   )
