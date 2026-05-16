@@ -44,9 +44,7 @@ function App() {
       <Route path="/resetpassword" element={<ResetPassword />}/> 
       <Route path="/resetpassword/:token" element={<ResetPasswordPage/>}/> 
         </>
-        )||(<>
-         <Route path="/message" element={Message}/>
-        </>)
+        )
       }
       </Routes>
     
