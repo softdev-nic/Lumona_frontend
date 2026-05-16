@@ -11,15 +11,17 @@ import { useState,useEffect } from "react"
  import Sidebar from "./components/Sidebar"
  import ResetPassword from './Pages/ResetPassword'
  import ResetPasswordPage from "./Pages/ResetPasswordPage"
+ import Message from "./components/Message"
+ import { useNavigate } from "react-router-dom"
 function App() {
   const [logged,setLogged] = useState(false)
   const location = useLocation();
+  const Navigate = useNavigate()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     setLogged(!!token)
   }, [location.pathname])
-  
   return (
     <>
     {
@@ -42,12 +44,14 @@ function App() {
       <Route path="/resetpassword" element={<ResetPassword />}/> 
       <Route path="/resetpassword/:token" element={<ResetPasswordPage/>}/> 
         </>
-        )
+        )||(<>
+         <Route path="/message" element={Message}/>
+        </>)
       }
       </Routes>
-  
+    
     </>
-
+   
   )
 }
 
