@@ -39,12 +39,18 @@ function ResetPasswordPage() {
         message:"Password reset successful",
         show:true,
       })
-      navigate('/login');
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (error) {
       console.error('Reset password error:', error);
+      setPopUP({
+        type: "error",
+        message: error.response?.data?.message || "Something went wrong",
+        show: true,
+      });
     }
   };
-
   return (
     <div className='flex items-center justify-center min-h-[calc(100vh-80px)] bg-gray-100 p-4'>
       <div className='w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg'>
@@ -63,7 +69,7 @@ function ResetPasswordPage() {
           </button>
         </form>
         {popUP.show && (
-          <PopUp message={popUP.message} type={popUP.type} />
+          <PopUp message={popUP.message} type={popUP.type} onClose={() => setPopUP({ ...popUP, show: false })} />
         )
       }
       </div>

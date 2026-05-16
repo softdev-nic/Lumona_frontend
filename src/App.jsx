@@ -51,7 +51,7 @@ function App() {
 
       </Routes>
     
-      <PopUp message={"hello"} type="error"/>
+    
     </>
   )
 }
