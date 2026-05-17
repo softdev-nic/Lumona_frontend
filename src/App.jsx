@@ -14,6 +14,7 @@ import { useState,useEffect } from "react"
  import Message from "./components/Message"
  import { useNavigate } from "react-router-dom"
 import PopUp from "./components/Pop Up/PopUP"
+import EmailVerification from "./Pages/EmailVerification"
 function App() {
   const [logged,setLogged] = useState(false)
   const location = useLocation();
@@ -48,7 +49,7 @@ function App() {
       }
           <Route path="/resetpassword" element={<ResetPassword />}/> 
       <Route path="/resetpassword/:token" element={<ResetPasswordPage/>}/> 
-
+      <Route path="/verify/:token" element={<EmailVerification/>}/>
       </Routes>
     
     
