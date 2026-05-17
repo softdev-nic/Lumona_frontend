@@ -1,7 +1,7 @@
  import React, { useState } from 'react'
 import axios from 'axios'
 import API from '../../../services/api'
-
+import PopUp from '../../../components/Pop Up/PopUP'
 function ProfileComponent(props) {
   const [formdata, setFormdata] = useState({
     name: props.name,

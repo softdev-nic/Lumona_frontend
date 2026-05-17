@@ -3,7 +3,13 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 import API from '../../services/api';
+import PopUp from '../../components/Pop Up/PopUP';
 function Registration(props) {
+  const [popup, setPopup] = useState({
+    show: false,
+    message: '',
+    type: ''
+  });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,6 +36,10 @@ function Registration(props) {
       }
     );
       console.log('Registration successful:', response.data);
+      setPopup({ show: true, message: 'Registration Successful!', type: 'success' });
+      setTimeout(() => {
+        navigate('/login');
+      }, 1500);
       
       setFormData({
         name: '',
@@ -41,6 +51,7 @@ function Registration(props) {
       
     } catch (error) {
       console.error('Registration error:', error);
+      setPopup({ show: true, message: error.response?.data?.message || 'Registration failed', type: 'error' });
     }
   };
 
@@ -102,7 +113,9 @@ function Registration(props) {
             Log in
             </Link>
             </p>
+        {popup.show && <PopUp message={popup.message} type={popup.type} onClose={() => setPopup({ ...popup, show: false })} />}
       </div>
+      
     </div>
   );
 }
