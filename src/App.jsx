@@ -1,6 +1,9 @@
  import React from "react"
  import Navbar from "./components/Navbar"
  import { Routes,Route, useLocation } from "react-router-dom"
+ import TeamCreation from "./Pages/TeamCreation"
+ import Register from "./Pages/Register"
+ import TeamsHomePage from "./Pages/TeamsHomePage"
 import { useState,useEffect } from "react"
   
  
@@ -31,10 +34,13 @@ function App() {
       )
     }
      <Navbar/>
-
+     
      <Routes>
-       
-   
+      <Route path="/" element={<TeamsHomePage/>}/>
+      <Route path="/team-creation" element={<TeamCreation/>}/>
+      <Route path="/register" element={<Register/>}/>
+
+      
         
       
       
