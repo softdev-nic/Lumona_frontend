@@ -2,19 +2,18 @@
  import Navbar from "./components/Navbar"
  import { Routes,Route, useLocation } from "react-router-dom"
 import { useState,useEffect } from "react"
- import Registration from "./Pages/Login and registration/Registration"
- import Login from "./Pages/Login and registration/Login"
- import Profile from "./Pages/Login and registration/profile/Profile"
- import TaskManager from "./Pages/Task Manager/TaskManager"
- import Tasklist from "./Pages/Task Manager/Tasklist"
+  
+ 
+ 
+  
  import Logo from "./assets/LumonaLogo1.png"
  import Sidebar from "./components/Sidebar"
- import ResetPassword from './Pages/ResetPassword'
- import ResetPasswordPage from "./Pages/ResetPasswordPage"
+ 
+ 
  import Message from "./components/Message"
  import { useNavigate } from "react-router-dom"
 import PopUp from "./components/Pop Up/PopUP"
-import EmailVerification from "./Pages/EmailVerification"
+ 
 function App() {
   const [logged,setLogged] = useState(false)
   const location = useLocation();
@@ -35,21 +34,12 @@ function App() {
 
      <Routes>
        
-       <Route path="/registration" element={<Registration logo={Logo} />}/> 
-       <Route path="/login" element={<Login logo={Logo} />}/>
-       {
-
-       logged&& ( <>
-        <Route path="/profile" element={<Profile logo={Logo} />}/> 
-       <Route path="/taskmanager" element={<TaskManager logo={Logo} />}/> 
-      <Route path="/tasklist" element={<Tasklist logo={Logo} />}/> 
-  
-        </>
-        )
-      }
-          <Route path="/resetpassword" element={<ResetPassword />}/> 
-      <Route path="/resetpassword/:token" element={<ResetPasswordPage/>}/> 
-      <Route path="/verify/:token" element={<EmailVerification/>}/>
+   
+        
+      
+      
+      
+     
       </Routes>
     
     
